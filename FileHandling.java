@@ -1,34 +1,37 @@
 import java.io.*;
 import java.util.*;
+import java.
 
 public class FileHandling {
-    static void SortbyFname() {
-        ArrayList<String[]> rows = new ArrayList<String[]>();
-        try {
-            BufferedReader unsort = new BufferedReader(new FileReader("output.csv"));
-            FileWriter sort = new FileWriter("SortedFistName.csv");
-
-            String line = "";
-            unsort.readLine();
-
-            while ((line = unsort.readLine()) != null) {
-                String[] columns = line.split(",");
-                rows.add(columns);
-            }
-
-        } catch (IOException e) {
-            System.out.println(e);
-        }
+    static void SortbyFname(ArrayList<String[]> row) {
+       
+       
 
        
 
     }
 
-    static void SortbyLname() {
+    static void SortbyLname(ArrayList<String[]> row) {
 
     }
 
-    static void SortbyregdNo() {
+    static void SortbyregdNo(ArrayList<String[]> row) {
+        ArrayList<Integer> sortedArray= new ArrayList<>();
+
+        for(int i=0;i<row.size();i++)
+        {
+            int regdNO=Integer.parseInt(row.get(i)[0]);
+            sortedArray.add(regdNO);
+        }
+        Collections.sort(sortedArray);
+
+        try{
+
+        }catch(IOException e)
+        {
+
+
+        }
 
     }
 
@@ -43,13 +46,16 @@ public class FileHandling {
 
         // Readline method is used to read each line of the uncleaned file
         // and return it as a String
+
+        ArrayList<String[]> row = new ArrayList<String[]>();
+
         while ((rows = uncleaned.readLine()) != null) {
             // split the line into columns using comma as delimeter
             String[] columns = rows.split(",");
 
             // create a new array to store the data after necessary removal of columns
             String[] updatedColumns = new String[2];
-
+            row.add(updatedColumns);
             for (int i = 0; i < 2; i++) {
                 updatedColumns[i] = columns[i];
             }
@@ -69,13 +75,13 @@ public class FileHandling {
         int choice = sc.nextInt();
         switch (choice) {
             case 1:
-                SortbyFname();
+                SortbyFname(row);
                 break;
             case 2:
-                SortbyLname();
+                SortbyLname(row);
                 break;
             case 3:
-                SortbyregdNo();
+                SortbyregdNo(row);
                 break;
         }
 
